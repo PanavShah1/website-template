@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.page-cont{
+    margin-top: 100px;
+    background-color: aqua;
+    width: auto;
+    display: flex;
+    /* height: calc(100vh - 100px); */
+    align-items: center;
+    justify-content: center;
+}
