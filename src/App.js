@@ -9,7 +9,7 @@ import Register from "./Register";
 export default function App() {
     return (
         <Router>
-            <div>
+            <div className="app-cont">
                 {/* Include your Navbar component here if needed */}
                 <Navbar />
                 <Routes>

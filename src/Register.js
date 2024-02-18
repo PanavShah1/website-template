@@ -29,7 +29,7 @@ export default function Register(){
 
 
     const [formData, setFormData] = React.useState({name: "", email: "", password: "", confirmPassword: ""})
-    const [errors, setErrors] = React.useState("no error")
+    const [errors, setErrors] = React.useState("")
 
     function handleChange(event){
         const {name, value} = event.target
@@ -68,42 +68,47 @@ export default function Register(){
     return (
         <div className="page-cont">
             <div className="register-cont">
+                <p className="title">Register</p>
                 <form className="form" onSubmit={submit}>
+                    <p>Name</p>
                     <input
                         type="text"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Name"
+                        placeholder="Enter name"
                         name="name"
                     />
+                    <p>Email</p>
                     <input
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="Email"
+                        placeholder="Enter email"
                         name="email"
                     />
+                    <p>Password</p>
                     <input
                         type="password"
                         value={formData.password}
                         onChange={handleChange}
-                        placeholder="Password"
+                        placeholder="Enter password"
                         name="password"
                     />
+                    <p>Confirm Password</p>
                     <input
                         type="password"
                         value={formData.confirmPassword}
                         onChange={handleChange}
-                        placeholder="Confirm Password"
+                        placeholder="Enter pasword"
                         name="confirmPassword"
                     />
 
                     <button>
-                        Submit
+                        REGISTER
                     </button>
                 </form>
                 <p className="register--errors">{errors}</p>
-                <Link to={"/login"}>Login</Link>
+                <Link to={"/login"} className="change-page"><p>Already have an account?&nbsp; <span className="span-blue">Login</span></p></Link>
             </div>
         </div>
     )

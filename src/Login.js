@@ -28,7 +28,7 @@ export default function Login(){
 
 
     const [formData, setFormData] = React.useState({email: "", password: ""})
-    const [errors, setErrors] = React.useState("no error")
+    const [errors, setErrors] = React.useState("")
     const [allData, setAllData] = React.useState([])
     const [dataObj, setDataObj] = React.useState([])
 
@@ -102,19 +102,22 @@ export default function Login(){
     return (
         <div className="page-cont">
             <div className="login-cont">
+                <p className="title">Login</p>
                 <form className="form" onSubmit={submit}>
+                    <p>Email</p>
                     <input
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="Email"
+                        placeholder="Enter email"
                         name="email"
                     />
+                    <p>Password</p>
                     <input
                         type="password"
                         value={formData.password}
                         onChange={handleChange}
-                        placeholder="Password"
+                        placeholder="Enter password"
                         name="password"
                     />
 
@@ -123,7 +126,7 @@ export default function Login(){
                     </button>
                 </form>
                 <p className="login--errors">{errors}</p>
-                <Link to={"/register"}>Register</Link>
+                <Link to={"/register"} className="change-page"><p>Don't have an account?&nbsp; <span className="span-blue">Register</span></p></Link>
             </div>
         </div>
     )

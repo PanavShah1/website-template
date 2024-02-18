@@ -26,7 +26,7 @@ export default function Navbar() {
                         <Link to="/register">Register</Link>
                     </li>
                     <li className="nav-link">
-                        <Link to="/login">Loginœ</Link>
+                        <Link to="/login">Login</Link>
                     </li>
                     
                 </ul>
