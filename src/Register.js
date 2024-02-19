@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Login from "./Login";
+import { useNavigate } from "react-router-dom";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -26,7 +27,7 @@ const usersDB = ref(database, "Users");
 
 
 export default function Register(){
-
+    const navigate = useNavigate();
 
     const [formData, setFormData] = React.useState({name: "", email: "", password: "", confirmPassword: ""})
     const [errors, setErrors] = React.useState("")
@@ -52,6 +53,10 @@ export default function Register(){
             console.log("submit")
             setErrors("No errors")
             push(usersDB, formData)
+            console.log(formData.email)
+            localStorage.setItem("userData", JSON.stringify(formData))
+            console.log(localStorage.getItem("userData"))
+            navigate("/about")
         }
         else{
             setErrors("Password does not match")

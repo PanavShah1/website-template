@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Register from "./Register";
+import { useNavigate } from "react-router-dom";
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, onValue} from "firebase/database"
@@ -25,7 +27,7 @@ const usersDB = ref(database, "Users");
 
 
 export default function Login(){
-
+    const navigate = useNavigate()
 
     const [formData, setFormData] = React.useState({email: "", password: ""})
     const [errors, setErrors] = React.useState("")
@@ -71,29 +73,28 @@ export default function Login(){
             setErrors("Empty input")
             return(0)
         }
-
+        
         else{
-            setErrors("Login")
+            for(var i = 1; i < dataObj.length; i++){
+                console.log("loop" + i)
+                console.log(dataObj[i])
+                if(formData.email == dataObj[i].email && formData.password == dataObj[i].password){
+                    console.log("user exists")
+                    setErrors("loging in")
+                    localStorage.setItem("userData", JSON.stringify(dataObj[i]))
+                    console.log(localStorage.getItem("userData"))
+                    navigate("/about")
+                }
+                else{
+                    console.log('user does not exist')
+                    setErrors("User does not exist")
+                }
+            }
         }
 
         
 
     }
-
-
-    React.useEffect(()=>{
-        for(var i = 1; i < dataObj.length; i++){
-            console.log("loop" + i)
-            console.log(dataObj[i])
-            if(formData.email == dataObj[i].email && formData.password == dataObj[i].password){
-                console.log("user exists")
-                break
-            }
-            else{
-                console.log('user does not exist')
-            }
-        }
-    }, [formData, dataObj])
 
     React.useEffect(() => {
         console.log(formData)
