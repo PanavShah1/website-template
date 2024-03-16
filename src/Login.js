@@ -42,35 +42,54 @@ export default function Login(){
         }))
     }
 
+
+
+    // const [dataList, setDataList] = React.useState([])
+
+
+    const fetchData = async() => {
+
+        const database = getDatabase()
+        const dataRef = ref(database, '/')
+
+        onValue(dataRef, (snapshot) => {
+            const data = snapshot.val()
+            console.log("data", data)
+            var dataList = []
+            if(data){
+                // setDataList(Object.entries(data).map(([key, value]) => ({
+                //     value
+                // })))
+                for(const key in data['Users']){
+                    dataList.push(data['Users'][key])
+                }
+                setAllData(dataList)
+                console.log(dataList)
+                setDataObj(dataList)
+                console.log("dataObj")
+                console.log(dataObj)
+                
+            }
+            console.log("end")
+        })
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchData)
+
+
+
+
+
     function submit(event){
         event.preventDefault()
+        console.log("submitting")
 
-
-        const fetchData = async() => {
-
-            const database = getDatabase()
-            const dataRef = ref(database, '/')
-
-            onValue(dataRef, (snapshot) => {
-                const data = snapshot.val()
-                if(data){
-                    const dataList = Object.entries(data).map(([key, value]) => ({
-                        key,
-                        ...value
-                    }))
-                    setAllData(dataList)
-                    // console.log(dataList)
-                    setDataObj(Object.values(allData[0]))
-                    // console.log("dataObj")
-                    // console.log(dataObj)
-                    
-                }
-            })
-        }
-        fetchData()   
+        console.log("formdata", formData)
+        console.log("dataobjjjj", dataObj)
 
         if(formData.email == '' || formData.password == ''){
             setErrors("Empty input")
+            console.log("empty input")
             return(0)
         }
         
@@ -95,6 +114,11 @@ export default function Login(){
         
 
     }
+
+    React.useEffect(() => {
+        // console.log("dataList", dataList)
+        console.log("dataObjj", dataObj)
+    }, [dataObj])
 
     React.useEffect(() => {
         console.log(formData)

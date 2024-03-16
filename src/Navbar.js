@@ -7,6 +7,12 @@ import "./navbar.css"
 
 
 export default function Navbar() {
+
+    function logout(){
+        localStorage.setItem("userData", "")
+    }
+
+
     return (
         <nav className="navbar navbar-expand-md p-4 fixed-top fixed-left">
             <button className="navbar-toggler" data-bs-target="#index" data-bs-toggle="collapse" >
@@ -27,6 +33,9 @@ export default function Navbar() {
                     </li>
                     <li className="nav-link">
                         <Link to="/login">Login</Link>
+                    </li>
+                    <li className="nav-link">
+                        <a onClick={logout}>Logout</a>
                     </li>
                     
                 </ul>
