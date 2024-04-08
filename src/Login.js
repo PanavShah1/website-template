@@ -44,10 +44,9 @@ export default function Login(){
 
 
 
-    // const [dataList, setDataList] = React.useState([])
 
 
-    const fetchData = async() => {
+    React.useEffect(() => {
 
         const database = getDatabase()
         const dataRef = ref(database, '/')
@@ -57,9 +56,6 @@ export default function Login(){
             console.log("data", data)
             var dataList = []
             if(data){
-                // setDataList(Object.entries(data).map(([key, value]) => ({
-                //     value
-                // })))
                 for(const key in data['Users']){
                     dataList.push(data['Users'][key])
                 }
@@ -72,9 +68,8 @@ export default function Login(){
             }
             console.log("end")
         })
-    }
+    }, [dataObj])
 
-    document.addEventListener("DOMContentLoaded", fetchData)
 
 
 
