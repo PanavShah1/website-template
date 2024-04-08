@@ -11,14 +11,14 @@ import { getDatabase, ref, push, onValue} from "firebase/database"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAwFoir0r12ayGgjq3mggBZI2d30rAOIE8",
-  authDomain: "website-template-ab2ae.firebaseapp.com",
-  projectId: "website-template-ab2ae",
-  storageBucket: "website-template-ab2ae.appspot.com",
-  messagingSenderId: "779405253378",
-  appId: "1:779405253378:web:f2b878e26d94dae367401b",
-  databaseURL: "https://website-template-ab2ae-default-rtdb.asia-southeast1.firebasedatabase.app/"
-};
+    apiKey: "AIzaSyAwFoir0r12ayGgjq3mggBZI2d30rAOIE8",
+    authDomain: "website-template-ab2ae.firebaseapp.com",
+    projectId: "website-template-ab2ae",
+    storageBucket: "website-template-ab2ae.appspot.com",
+    messagingSenderId: "779405253378",
+    appId: "1:779405253378:web:f2b878e26d94dae367401b",
+    databaseURL: "https://website-template-ab2ae-default-rtdb.asia-southeast1.firebasedatabase.app/"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -78,13 +78,14 @@ export default function Login(){
 
 
 
-
+    React.useEffect(()=>{
+        console.log("formdata", formData)
+    }, [formData])
 
     function submit(event){
         event.preventDefault()
         console.log("submitting")
 
-        console.log("formdata", formData)
         console.log("dataobjjjj", dataObj)
 
         if(formData.email == '' || formData.password == ''){

@@ -11,13 +11,13 @@ import { getDatabase, ref, push } from "firebase/database"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAwFoir0r12ayGgjq3mggBZI2d30rAOIE8",
-  authDomain: "website-template-ab2ae.firebaseapp.com",
-  projectId: "website-template-ab2ae",
-  storageBucket: "website-template-ab2ae.appspot.com",
-  messagingSenderId: "779405253378",
-  appId: "1:779405253378:web:f2b878e26d94dae367401b",
-  databaseURL: "https://website-template-ab2ae-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    apiKey: "AIzaSyAwFoir0r12ayGgjq3mggBZI2d30rAOIE8",
+    authDomain: "website-template-ab2ae.firebaseapp.com",
+    projectId: "website-template-ab2ae",
+    storageBucket: "website-template-ab2ae.appspot.com",
+    messagingSenderId: "779405253378",
+    appId: "1:779405253378:web:f2b878e26d94dae367401b",
+    databaseURL: "https://website-template-ab2ae-default-rtdb.asia-southeast1.firebasedatabase.app/"
 };
 
 // Initialize Firebase
