@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, onValue} from "firebase/database"
+import { data } from "@here/maps-api-for-javascript";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -68,7 +69,7 @@ export default function Login(){
             }
             console.log("end")
         })
-    }, [dataObj])
+    }, [])
 
 
 
@@ -78,39 +79,36 @@ export default function Login(){
     }, [formData])
 
     function submit(event){
-        event.preventDefault()
-        console.log("submitting")
-
-        console.log("dataobjjjj", dataObj)
-
-        if(formData.email == '' || formData.password == ''){
-            setErrors("Empty input")
-            console.log("empty input")
-            return(0)
-        }
-        
-        else{
-            for(var i = 1; i < dataObj.length; i++){
-                console.log("loop" + i)
-                console.log(dataObj[i])
-                if(formData.email == dataObj[i].email && formData.password == dataObj[i].password){
-                    console.log("user exists")
-                    setErrors("loging in")
-                    localStorage.setItem("userData", JSON.stringify(dataObj[i]))
-                    console.log(localStorage.getItem("userData"))
-                    navigate("/about")
+        event.preventDefault();
+    
+        if(formData.email === '' || formData.password === ''){
+            setErrors("Empty input");
+            return;
+        } else {
+            // Check if the user exists
+            const user = dataObj.find(user => user.email === formData.email);
+    
+            if(user) {
+                // User exists, now check password
+                if(user.password === formData.password) {
+                    // Correct password, log in
+                    console.log("User exists, logging in");
+                    setErrors("Logging in");
+                    localStorage.setItem("userData", JSON.stringify(user));
+                    navigate("/about");
+                } else {
+                    // Incorrect password
+                    console.log('Incorrect Password');
+                    setErrors("Incorrect Password");
                 }
-                else{
-                    console.log('user does not exist')
-                    setErrors("User does not exist")
-                }
+            } else {
+                // User does not exist
+                console.log("User does not exist");
+                setErrors("User does not exist");
             }
         }
-
-        
-
     }
-
+    
     React.useEffect(() => {
         // console.log("dataList", dataList)
         console.log("dataObjj", dataObj)
